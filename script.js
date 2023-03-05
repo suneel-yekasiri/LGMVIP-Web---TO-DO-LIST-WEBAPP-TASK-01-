@@ -83,7 +83,7 @@ let elem1 = document.getElementById(i1);
 let elem2 = document.getElementById(i2);
 elem2.classList.toggle("checked");
 
-let s3 = t1.findIndex(function(e1) {  //no change
+let s3 = t1.findIndex(function(e1) {
 let i4 = "td" + e1.uniqueNo;
 
 if (i4 === i3) {
@@ -105,13 +105,6 @@ i5.isChecked = true;
 function fun6(i3) {
 let elem3 = document.getElementById(i3);
 thirdContainer.removeChild(elem3);
-//changed here
-
-t1 = [];
-thirdContainer.innerHTML = "";
-
-//changed here
-
 
 let elem4 = t1.findIndex(function(e1) {
 let i4 = "td" + e1.uniqueNo;
@@ -178,6 +171,7 @@ fun4(td);
 
 deleteAllButton.onclick = function() {
 localStorage.clear();
+
 t1 = [];
 thirdContainer.innerHTML = "";
 };
