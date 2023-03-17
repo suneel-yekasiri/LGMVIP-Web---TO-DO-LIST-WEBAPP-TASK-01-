@@ -1,177 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5f59ca6ad3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Todo List</title>
 
-let thirdContainer = document.getElementById("thirdContainer");
-let firstButton = document.getElementById("firstButton");
-let secondButton = document.getElementById("secondButton");
-let deleteAllButton = document.getElementById("deleteAllButton");
+  </head>
 
-const saveMessage = document.querySelector('.save-message');
-const addTaskMessage = document.querySelector('.add-task-message');
-const deleteMessage = document.querySelector('.delete-message');
+  <body>
+    <div class="first-container">
+      <div class="second-container">
+        <div class="row">
+          <div class="col-12">
 
-
-secondButton.addEventListener('mouseover', () => {
-saveMessage.textContent = 'Click Save to save your tasks';
-});
-
-secondButton.addEventListener('mouseout', () => {
-saveMessage.textContent = '';
-});
-
-
-firstButton.addEventListener('mouseover', () => {
-addTaskMessage.textContent = 'Click Add Task to create your task';
-});
-
-firstButton.addEventListener('mouseout', () => {
-addTaskMessage.textContent = '';
-})
-
-
-deleteAllButton.addEventListener('mouseover', () => {
-deleteMessage.textContent = 'Click Delete all tasks to delete your tasks';
-});
-
-deleteAllButton.addEventListener('mouseout', () => {
-deleteMessage.textContent = '';
-});
+            <h1 class="first-heading">TO DO LIST WEBAPP</h1>
+            
+            <h1 class="second-heading">
+              Create Task<span class="third-heading"></span>
+            </h1>
+            <input type="text" id="firstInput" class="first-input" placeholder="What task needs to be done?"/>
+            <button class="button" id="firstButton">Add Task</button>
+            <span class="add-task-message"></span>
 
 
-function fun1() {
-let s1 = localStorage.getItem("t1");
-let s2 = JSON.parse(s1);
-if (s2 === null) {
-return [];
-} else {
-return s2;
-}
-}
+            <h1 class="fourth-heading">
+              My Tasks<span class="fifth-heading"></span>
+            </h1>
+            <ul class="third-container" id="thirdContainer"></ul>
 
-let t1 = fun1();
-let c1 = t1.length;
+            <button class="button" id="secondButton">Save</button>
+            <button class="button" id="deleteAllButton">Delete All Tasks</button>
+            <span class="save-message"></span>
 
-secondButton.onclick = function() {
-localStorage.setItem("t1", JSON.stringify(t1));
-};
+            <span class="delete-message"></span>
 
-function fun2() {
-let u1 = document.getElementById("firstInput");
-let u2 = u1.value;
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <footer style="text-align: center;color: yellow;">
+      <p class="m-0">&copy; 
+        <a class="text-white font-weight-bold"></a>Designed by 
+        <a class="text-red font-weight-bold "style="color:yellow;" href="https://www.linkedin.com/in/suneel-yekasiri-b6674623b/">
+            Suneel Yekasiri</a>
+    </p>
+     </footer>
 
-if (u2 === "") {
-alert("Enter Valid Text");
-return;
-}
+  <script src="script.js"></script>
 
-c1 = c1 + 1;
+  </body>
+</html>
 
-let n1 = {
-text: u2,
-uniqueNo: c1,
-isChecked: false
-};
-t1.push(n1);
-fun4(n1);
-u1.value = "";
-}
-
-firstButton.onclick = function() {
-fun2();
-};
-
-function fun3(i1, i2) {
-let elem1 = document.getElementById(i1);
-let elem2 = document.getElementById(i2);
-elem2.classList.toggle("checked");
-
-let s3 = t1.findIndex(function(e1) {
-let i4 = "td" + e1.uniqueNo;
-
-if (i4 === i3) {
-  return true;
-} else {
-  return false;
-}
-});
-
-let i5 = t1[s3];
-
-if (i5.isChecked === true) {
-i5.isChecked = false;
-} else {
-i5.isChecked = true;
-}
-}
-
-function fun6(i3) {
-let elem3 = document.getElementById(i3);
-thirdContainer.removeChild(elem3);
-
-let elem4 = t1.findIndex(function(e1) {
-let i4 = "td" + e1.uniqueNo;
-if (i4 === i3) {
-  return true;
-} else {
-  return false;
-}
-});
-
-t1.splice(elem4, 1);
-}
-
-function fun4(td) {
-let i3 = "td" + td.uniqueNo;
-let i1 = "checkbox" + td.uniqueNo;
-let i2 = "label" + td.uniqueNo;
-
-let elem3 = document.createElement("li");
-elem3.classList.add("sixth-container", "d-flex", "flex-row");
-elem3.id = i3;
-thirdContainer.appendChild(elem3);
-
-let elem5 = document.createElement("input");
-elem5.type = "checkbox";
-elem5.id = i1;
-
-elem5.onclick = function() {
-fun3(i1, i2);
-};
-
-elem5.classList.add("second-input-for-checkbox");
-elem3.appendChild(elem5);
-
-
-let lc = document.createElement("div");
-lc.classList.add("fourth-container", "d-flex", "flex-row");
-elem3.appendChild(lc);
-
-let elem2 = document.createElement("label");
-elem2.setAttribute("for", i1);
-elem2.id = i2;
-elem2.classList.add("first-label-for-checkbox");
-elem2.textContent = td.text;
-lc.appendChild(elem2);
-
-let d = document.createElement("div");
-d.classList.add("fifth-container");
-lc.appendChild(d);
-
-let d1 = document.createElement("i");
-d1.classList.add("far", "fa-trash-alt", "icon-for-the-deleting-task");
-
-d1.onclick = function() {
-fun6(i3);
-};
-
-d.appendChild(d1);
-}
-
-for (let td of t1) {
-fun4(td);
-}
-
-deleteAllButton.onclick = function() {
-localStorage.clear();
-
-t1 = [];
-thirdContainer.innerHTML = "";
-};
